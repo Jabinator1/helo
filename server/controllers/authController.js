@@ -41,4 +41,13 @@ module.exports = {
             return res.status(401).send("Invalid username/password")
         }
     },
+    logout: (req, res) => {
+        req.session.destroy()
+        res.sendStatus(200)
+    },
+    getMe: async (req, res) => {
+        const db = req.app.get('db')
+        
+        // console.log(req.session.userId)
+    },
 }

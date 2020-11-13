@@ -32,10 +32,13 @@ class Auth extends Component {
     render() {
         const {loggingIn} = this.state
         return (
-            <div>
-                <form onSubmit={e => this.entryFn(e)}>
-                    <input name="username" type="text" onChange={e => this.changeHandler(e)}/>
-                    <input name="password" type="password" onChange={e => this.changeHandler(e)}/>
+            <div className="auth-container">
+                <form className="auth-form" onSubmit={e => this.entryFn(e)}>
+                    <div className="auth-inputs">
+                        <input name="username" type="text" onChange={e => this.changeHandler(e)}/>
+                        <input name="password" type="password" onChange={e => this.changeHandler(e)}/>
+
+                    </div>
                     <button type="submit">{loggingIn ? "Login" : "Register"}</button>
                 </form>
                 <button onClick={() => this.setState({loggingIn: !loggingIn})}>{loggingIn ? "Create an account?" : "Already have an account?"}</button>

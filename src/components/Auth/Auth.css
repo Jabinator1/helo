@@ -1,0 +1,9 @@
+.auth-container {
+    display: flex;
+    align-items: center;
+}
+
+.auth-form {
+    display: flex;
+    flex-direction: column;
+}
