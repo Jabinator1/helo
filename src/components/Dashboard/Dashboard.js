@@ -6,7 +6,7 @@ import Post from '../Post/Post'
 const Dashboard = ({user: {userId}}) => {
     const [search, setSearch] = useState("")
     const [checkbox, setCheckbox] = useState(true)
-    const [posts, setPosts] = useState([])
+    const [posts, setPosts] = useState(undefined)
     const [test, setTest] = useState("test")
     
     useEffect(() => {
@@ -31,20 +31,25 @@ const Dashboard = ({user: {userId}}) => {
     }
     
     return (
-        <div className="dashboard-container">
-            <div className="dashboard-header">
-                <div>
-                    <input type="search" placeholder="Search by title" onChange={e => setSearch(e.target.value)}/>
-                </div>
-                <div>
-                    <label>My posts</label>
-                    <input type="checkbox" name="checkbox" checked={checkbox} onChange={() => setCheckbox(!checkbox)}/>
-                </div>
 
+        <div className="dashboard-container">
+            <div>
+                <div className="dashboard-header">
+                    <div className="search-container">
+                        <input type="search" placeholder="Search by title" onChange={e => setSearch(e.target.value)}/>
+                        <img src="https://raw.githubusercontent.com/DevMountain/simulation-3/master/assets/search_logo.png" alt="Search icon"/>
+                    </div>
+                    <div>
+                        <label>My posts</label>
+                        <input type="checkbox" name="checkbox" checked={checkbox} onChange={() => setCheckbox(!checkbox)}/>
+                    </div>
+                </div>
+                <main>
+                    { posts === undefined ? <img src="https://crossover.evoqondemand.com/Portals/0/Images/Map/xopreload.gif"/> : (
+                        posts.map(post => <Post key={post.post_id} post={post} deleteFn={deleteFn}/>)
+                    )}
+                </main>
             </div>
-            <main>
-                {posts.map(post => <Post key={post.post_id} post={post} deleteFn={deleteFn}/>)}
-            </main>
         </div>
     )
 }

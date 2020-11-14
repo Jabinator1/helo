@@ -3,7 +3,7 @@ import axios from 'axios'
 import Post from './Post'
 
 const PostPage = ({match: {params: {postid}}}) => {
-    const [post, setPost] = useState({}) 
+    const [post, setPost] = useState(undefined) 
 
     useEffect(() => {
         let ignore = false
@@ -22,12 +22,16 @@ const PostPage = ({match: {params: {postid}}}) => {
     }, [postid])
 
     return (
-        <div>
-            <Post post={post}/>
-            <div>
-                <img src={post.img} alt={post.content}/>
-                <p>{post.content}</p>
-            </div>
+        <div className="post-page">
+            { post == undefined ? <img src="https://crossover.evoqondemand.com/Portals/0/Images/Map/xopreload.gif"/> : (
+                <div className="post-container">
+                    <Post post={post}/>
+                    <div className="post-content">
+                        <img src={post.img} alt={`${post.username}'s upload`}/>
+                        <p>{post.content}</p>
+                    </div>
+                </div>
+            )}
         </div>
     )
 }

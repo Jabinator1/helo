@@ -21,27 +21,46 @@ class Auth extends Component {
         e.preventDefault()
         const {username, password, loggingIn} = this.state
         const profilePic = `https://robohash.org/${username}`
+
+        if (!username || !password) return alert("You need to enter both a valid username and password")
+        
         try {
             const user = await axios.post(`/auth/${loggingIn ? "login" : "register"}`, loggingIn ? {username, password} : {username, password, profilePic})
             this.props.loginUser(user.data)
             this.props.history.push("/dashboard")
         } catch (err) {
-            console.log(err.response.request.response)
+            alert(err.response.request.response)
         }
     }
     render() {
         const {loggingIn} = this.state
-        return (
-            <div className="auth-container">
-                <form className="auth-form" onSubmit={e => this.entryFn(e)}>
-                    <div className="auth-inputs">
-                        <input name="username" type="text" onChange={e => this.changeHandler(e)}/>
-                        <input name="password" type="password" onChange={e => this.changeHandler(e)}/>
+        const inputsArr = [
+            {label: "Username:", type: "text", name: "username"},
+            {label: "Password:", type: "password", name: "password"}
+        ]
 
-                    </div>
-                    <button type="submit">{loggingIn ? "Login" : "Register"}</button>
-                </form>
-                <button onClick={() => this.setState({loggingIn: !loggingIn})}>{loggingIn ? "Create an account?" : "Already have an account?"}</button>
+        return (
+            <div className="auth-page">
+                <div className="auth-container">
+                    <form className="auth-form" onSubmit={e => this.entryFn(e)}>
+                        <div className="auth-logo-container">
+                            <img src="https://raw.githubusercontent.com/Jabinator1/simulation-3/master/assets/helo_logo.png" alt="Helo Logo"/>
+                            <h1>Helo</h1>
+                        </div>
+                        <div className="auth-inputs">
+                            {inputsArr.map(input => (
+                                <div className="auth-input-container">
+                                    <label>{input.label}</label>
+                                    <input name={input.name} type={input.type} onChange={e => this.changeHandler(e)}/>
+                                </div>
+                            ))}
+                        </div>
+                        <div className="auth-buttons">
+                            <button className="entry-type-button" type="reset" onClick={() => this.setState({loggingIn: !loggingIn})}>{loggingIn ? "Need an account?" : "Already have an account?"}</button>
+                            <button className="entry-button" type="submit">{loggingIn ? "Login" : "Register"}</button>
+                        </div>
+                    </form>
+                </div>
             </div>
         )
     }

@@ -6,15 +6,17 @@ import Form from './components/Form/Form';
 import Nav from './components/Nav/Nav';
 import PostPage from './components/Post/PostPage';
 import './App.css';
-import './components/Nav/Nav.css'
-import './components/Post/Post.css'
-import './components/Dashboard/Dashboard.css'
 import './components/Auth/Auth.css'
+import './components/Nav/Nav.css'
+import './components/Dashboard/Dashboard.css'
+import './components/Post/Post.css'
+import './components/Post/PostPage.css'
+import './components/Form/Form.css'
 
 const App = ({isLoggedIn}) => {
   const location = useLocation()
   return (
-    <div>
+    <div className="app">
       { location.pathname === "/" ? null : <Nav />}
       {isLoggedIn && location.pathname !== "/" ? null : <Redirect to="/" />}
       <Switch>
