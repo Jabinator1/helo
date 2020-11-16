@@ -35,7 +35,7 @@ const Form = ({user: {userId}}) => {
                         <div key={input.label} className="post-inputs-containers">
                             <label className="post-label">{input.label}</label>
                             { input.name === "content" ? (
-                                <textarea className="post-input textarea" name={input.name} required="required" maxlength="1000" rows="3" onChange={e => setState({...state, [e.target.name]: e.target.value})}/>
+                                <textarea className="post-input textarea" name={input.name} required="required" maxLength="1000" rows="3" onChange={e => setState({...state, [e.target.name]: e.target.value})}/>
                             ) : (
                                 <input type={input.type} name={input.name} className="post-input" onChange={e => setState({...state, [e.target.name]: e.target.value})} />
                             )}

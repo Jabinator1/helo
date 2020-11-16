@@ -23,7 +23,7 @@ const PostPage = ({match: {params: {postid}}}) => {
 
     return (
         <div className="post-page">
-            { post == undefined ? <img src="https://crossover.evoqondemand.com/Portals/0/Images/Map/xopreload.gif"/> : (
+            { post === undefined ? <img src="https://crossover.evoqondemand.com/Portals/0/Images/Map/xopreload.gif" alt="loading-gif"/> : (
                 <div className="post-container">
                     <Post post={post}/>
                     <div className="post-content">

@@ -47,7 +47,14 @@ module.exports = {
     },
     getMe: async (req, res) => {
         const db = req.app.get('db')
+        const {userId} = req.session.user
         
-        // console.log(req.session.userId)
+        const [currentUser] = await db.get_me(userId)
+
+        if (currentUser) {
+            return res.status(200).send(req.session.user)
+        } else {
+            res.status(404).send("Login again pls")
+        }
     },
 }

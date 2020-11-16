@@ -1,5 +1,4 @@
-import { connect } from 'react-redux';
-import { Redirect, Route, Switch, useLocation } from 'react-router-dom';
+import { Route, Switch, useLocation } from 'react-router-dom';
 import Auth from './components/Auth/Auth';
 import Dashboard from './components/Dashboard/Dashboard';
 import Form from './components/Form/Form';
@@ -13,12 +12,11 @@ import './components/Post/Post.css'
 import './components/Post/PostPage.css'
 import './components/Form/Form.css'
 
-const App = ({isLoggedIn}) => {
+const App = () => {
   const location = useLocation()
   return (
     <div className="app">
       { location.pathname === "/" ? null : <Nav />}
-      {isLoggedIn && location.pathname !== "/" ? null : <Redirect to="/" />}
       <Switch>
         <Route exact path="/" component={Auth} />
         <Route path="/dashboard" component={Dashboard} />
@@ -29,4 +27,4 @@ const App = ({isLoggedIn}) => {
   );
 }
 
-export default connect(state => state)(App)
+export default App

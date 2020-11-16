@@ -28,13 +28,32 @@ header {
     color: white;
 }
 
+.icons-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    height: 90%;
+}
+
 nav {
     width: 40%;
     display: flex;
     flex-direction: column;
     align-items: center;
 }
+
 .nav-link {
     width: 100%;
     margin-bottom: 25px;
+}
+
+.logout-button {
+    background-color: transparent;
+    border: none;
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    cursor: pointer;
 }

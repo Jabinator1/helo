@@ -11,13 +11,12 @@ const Dashboard = ({user: {userId}}) => {
     
     useEffect(() => {
         let ignore = false
-
         const fetchPosts = async () => {
             try {
                 const posts = await axios.get(`/api/posts/search?userposts=${checkbox}&userid=${userId}&search=${search}`)
                 if (!ignore) setPosts(posts.data)
             } catch (err) {
-                console.log(err.response.request.response)
+                console.log(err.request.response.request)
             }
         }
 

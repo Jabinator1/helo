@@ -32,6 +32,7 @@ class Auth extends Component {
             alert(err.response.request.response)
         }
     }
+    
     render() {
         const {loggingIn} = this.state
         const inputsArr = [
@@ -49,7 +50,7 @@ class Auth extends Component {
                         </div>
                         <div className="auth-inputs">
                             {inputsArr.map(input => (
-                                <div className="auth-input-container">
+                                <div className="auth-input-container" key={input.label}>
                                     <label>{input.label}</label>
                                     <input name={input.name} type={input.type} onChange={e => this.changeHandler(e)}/>
                                 </div>
